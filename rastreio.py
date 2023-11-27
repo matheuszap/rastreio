@@ -6,12 +6,20 @@ def processa_frames(frames_folder):
     # Lista todos os arquivos no diretório dos frames
     frames = [f for f in os.listdir(frames_folder) if f.endswith('.png') or f.endswith('.jpg')]
 
+    # Ordena os frames com base nos números nos nomes dos arquivos
+    frames.sort(key=lambda x: int(''.join(filter(str.isdigit, x))))
+
     # Dicionário para armazenar os resultados
     resultados = {}
 
+    # Lista de métodos na ordem desejada
+    metodos = [cv2.TM_CCOEFF, cv2.TM_CCOEFF_NORMED, cv2.TM_CCORR, cv2.TM_CCORR_NORMED, cv2.TM_SQDIFF, cv2.TM_SQDIFF_NORMED]
+
     # Loop pelos métodos
-    for metodo in [cv2.TM_CCOEFF, cv2.TM_CCOEFF_NORMED, cv2.TM_CCORR, cv2.TM_CCORR_NORMED, cv2.TM_SQDIFF, cv2.TM_SQDIFF_NORMED]:
+    for i, metodo in enumerate(metodos):
         resultados[metodo] = []
+
+        print(f"\nAnalisando com o método {i} ({metodo}):\n")
 
         # Loop pelos quadros
         for frame in frames:
