@@ -59,7 +59,7 @@ if __name__ == "__main__":
     frames_folder = "./frames"
 
     # Especifica o diretório de saída para os arquivos CSV
-    output_folder = "./output"
+    output_folder = "./output/tabelas"
 
     # Processa os frames e obtém os resultados
     resultados = processa_frames(frames_folder)
